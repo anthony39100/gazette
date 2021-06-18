@@ -1,21 +1,41 @@
 {% extends 'base.html.twig' %}
+{% block head %}
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="description" content="page de connexion du site la gazette">
+        <title>{% block title %}connexion{% endblock %}</title>
 
-{% block title %}Log in!{% endblock %}
+        {# Run `composer require symfony/webpack-encore-bundle`
+           and uncomment the following Encore helpers to start using Symfony UX #}
+        {% block stylesheets %}
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+
+        <link href="//db.onlinewebfonts.com/c/7a8bc7c29b5bcadb9510cca51210ac46?family=Sitka+Banner&display=swap" rel="preload" as="font" type="text/css"/>
+        <link rel="stylesheet" href="{{asset("css/style.css")}}">
+        {% endblock %}
+
+        {% block javascripts %}
+            {#{{ encore_entry_script_tags('app') }}#}
+        {% endblock %}
+{% endblock %}
+
 
 {% block body %}
 
 
     <div class="container-fluid" >
     <div class="row">
-    <div class="col-7 bg-register" style="background-image:url('{{asset("images/bg-register.png")}}');background-size:cover;height:100vh">
+    <div class="col-12 col-lg-7 bg-register" >
+    <div class="filter">
     
     </div>
-    <div class="col-5">
-    <form method="post" >
+    </div>
+    <div class="col-12 col-lg-5">
+    <form method="post" class="" >
 
 
-    <h1 class="h3 mb-3 font-weight-normal text-center mt-5"><a href="/"> La Gazette</a></h1>
-   
+    <h1 class="h3 mb-3 font-weight-normal text-center mt-5 link-accueil"><a href="/"> La Gazette</a></h1>
+   <h2 class="mt-5 ml-3 title-size">Connexion</h2>
     <input type="text" value="{{ last_username }}" placeholder="votre nom d'utilisateur" name="username" id="inputUsername" class="form-control mt-5" autocomplete="username" required autofocus>
   
     <input type="password" name="password" id="inputPassword" placeholder="votre mot de passe" class="form-control mt-5 mb-5" autocomplete="current-password" required>
@@ -35,7 +55,7 @@
             </label>
         </div> #}
    
-
+    <p><a href="{{path("register")}}">pas encore inscrit ?</a></p>
     <button class="btn btn-lg btn-primary w-100"  type="submit">
         connexion
     </button>

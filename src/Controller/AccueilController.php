@@ -17,4 +17,10 @@ class AccueilController extends AbstractController
             'controller_name' => 'AccueilController',
         ]);
     }
+    /**
+     * @Route("/register",name="register")
+     */
+    public function Register(){
+        return $this->render('register.html.twig');
+    }
 }
