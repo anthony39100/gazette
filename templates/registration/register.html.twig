@@ -1,9 +1,10 @@
+
 {% extends 'base.html.twig' %}
 {% block head %}
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="description" content="page de connexion du site la gazette">
-        <title>{% block title %}connexion{% endblock %}</title>
+        <title>{% block title %}inscription{% endblock %}</title>
 
         {# Run `composer require symfony/webpack-encore-bundle`
            and uncomment the following Encore helpers to start using Symfony UX #}
@@ -31,36 +32,28 @@
     </div>
     </div>
     <div class="col-12 col-lg-5">
-    <form method="post" class="" >
+    {% for flashError in app.flashes('verify_email_error') %}
+        <div class="alert alert-danger" role="alert">{{ flashError }}</div>
+    {% endfor %}
 
+    <h1 class="text-center">La Gazette</h1>
 
-    <h1 class="h3 mb-3 font-weight-normal text-center mt-5 link-accueil"><a href="/"> La Gazette</a></h1>
-   <h2 class="mt-5 ml-3 title-size">Connexion</h2>
-    <input type="text" value="{{ last_username }}" placeholder="votre nom d'utilisateur" name="username" id="inputUsername" class="form-control mt-5" autocomplete="username" required autofocus>
-  
-    <input type="password" name="password" id="inputPassword" placeholder="votre mot de passe" class="form-control mt-5 mb-5" autocomplete="current-password" required>
+    {{ form_start(registrationForm) }}
+        {{ form_row(registrationForm.username,{'attr':{'placeholder':'votre nom d\'utilisateur'}}) }}
+        <p class="error alert-danger mt-3"></p>
+        {{ form_row(registrationForm.plainPassword, {
+            label: ' ',
+            placeholder:'votre mot de passe'
+       
+                    }) }}
+        {{ form_row(registrationForm.agreeTerms,{'attr':{'class':'mt-5'}}) }}
 
-    <input type="hidden" name="_csrf_token"
-           value="{{ csrf_token('authenticate') }}"
-    >
-   {% if error %}
-       <p class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</p>
-      {% endif %}
-
-    
-
-        {# <div class="checkbox mb-3">
-            <label>
-                <input type="checkbox" name="_remember_me"> se souvenir de moi
-            </label>
-        </div> #}
-   
-    <p><a href="{{path("app_register")}}">pas encore inscrit ?</a></p>
-    <button class="btn btn-lg btn-primary w-100"  type="submit">
-        connexion
-    </button>
-</form>
+        <button type="submit" class="btn btn-primary w-100 mt-5">Inscription</button>
+    {{ form_end(registrationForm) }}    
     </div>
     </div>
     </div>
+    {% block javascript %}
+    <script src="{{asset('js/form.js')}}"></script>
+    {% endblock %}
 {% endblock %}
