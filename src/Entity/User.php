@@ -6,10 +6,12 @@ use App\Repository\UserRepository;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Security\Core\User\UserInterface;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass=UserRepository::class)
  * @UniqueEntity(fields={"username"}, message="nom d'utilisateur déjà utilisé")
+ * @UniqueEntity(fields={"email"}, message="adresse email déjà utilisé")
  */
 class User implements UserInterface
 {
@@ -22,6 +24,11 @@ class User implements UserInterface
 
     /**
      * @ORM\Column(type="string", length=180, unique=true)
+     *   @Assert\Regex(
+     *     pattern     = "/^[a-z]+$/i",
+     *     htmlPattern = "[a-zA-Z]+",
+     *     message="les caractères spéciaux ( ! * ? $ ...) sont interdits."
+     * )
      */
     private $username;
 

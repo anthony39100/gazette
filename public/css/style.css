@@ -42,7 +42,9 @@ input[type=email]{
     border-top: none  !important ;
     padding: 0;
 }
-
+.pointer{
+    cursor: pointer;
+}
 @media (max-width: 575.98px) { 
     .bg-register{
         background-image:url('../images/bg-register360w.jpg');
