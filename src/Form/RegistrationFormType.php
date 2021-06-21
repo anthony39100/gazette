@@ -10,6 +10,7 @@ use Symfony\Component\Validator\Constraints\Length;
 use Symfony\Component\Validator\Constraints\NotBlank;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
+use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
@@ -22,13 +23,12 @@ class RegistrationFormType extends AbstractType
             ->add('username',TextType::class,[
                 'label'=>' ',
             ])
-            ->add('agreeTerms', CheckboxType::class, [
-                'mapped' => false,
-                'constraints' => [
-                    new IsTrue([
-                        'message' => 'You should agree to our terms.',
-                    ]),
-                ],
+          
+            ->add('cgu',CheckboxType::class,[
+                'label'=>' '
+            ])
+            ->add('email',EmailType::class,[
+                'label'=>' '
             ])
             ->add('plainPassword', PasswordType::class, [
                 // instead of being set onto the object directly,

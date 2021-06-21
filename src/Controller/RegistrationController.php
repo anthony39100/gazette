@@ -31,13 +31,13 @@ class RegistrationController extends AbstractController
                     $form->get('plainPassword')->getData()
                 )
             );
-
+            $form->getData()->setAvatar("avatar.jpg");
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($user);
             $entityManager->flush();
             // do anything else you need here, like send an email
 
-            return $this->redirectToRoute('login');
+            return $this->redirectToRoute('app_login');
         }
     
         
@@ -49,14 +49,40 @@ class RegistrationController extends AbstractController
     /**
      *@Route("/form-ajax","ajax")
      */
-    public function ajax(UserRepository $username,Request $request){
+    public function ajax(UserRepository $userRepo,Request $request){
         $user=new User();
         $form=$request->get("registration_form");
-        $username=$username->findBy(["username"=>$form]);
+        $username=$userRepo->findBy(["username"=>$form]);
         
         if($username==null){
             return new JsonResponse(['statut'=>0]);
-        }
+        }else{
+            return new JsonResponse(['statut'=>1]);
+           }
+       
+
+        $email=$userRepo->findBy(['email'=>$form]);
+        dd($email);
+       if($email==null){
+        return new JsonResponse(['statut'=>0]);
+       }else{
         return new JsonResponse(['statut'=>1]);
+       }
+    }
+        /**
+     *@Route("/email-ajax","email-ajax")
+     */
+    public function ajaxEmail(UserRepository $userRepo,Request $request){
+        $user=new User();
+        $form=$request->get("registration_form");
+        
+     
+
+        $email=$userRepo->findBy(['email'=>$form]);
+       if($email==null){
+        return new JsonResponse(['statut'=>0]);
+       }else{
+        return new JsonResponse(['statut'=>1]);
+       }
     }
 }

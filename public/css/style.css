@@ -36,7 +36,12 @@ input[type=password]{
     border-top: none  !important ;
     padding: 0;
 }
-
+input[type=email]{
+    border-left:none !important;
+    border-right: none  !important;
+    border-top: none  !important ;
+    padding: 0;
+}
 
 @media (max-width: 575.98px) { 
     .bg-register{

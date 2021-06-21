@@ -36,6 +36,21 @@ class User implements UserInterface
      */
     private $password;
 
+    /**
+     * @ORM\Column(type="integer")
+     */
+    private $cgu;
+
+    /**
+     * @ORM\Column(type="text")
+     */
+    private $Avatar;
+
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $email;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -110,5 +125,41 @@ class User implements UserInterface
     {
         // If you store any temporary, sensitive data on the user, clear it here
         // $this->plainPassword = null;
+    }
+
+    public function getCgu(): ?int
+    {
+        return $this->cgu;
+    }
+
+    public function setCgu(int $cgu): self
+    {
+        $this->cgu = $cgu;
+
+        return $this;
+    }
+
+    public function getAvatar(): ?string
+    {
+        return $this->Avatar;
+    }
+
+    public function setAvatar(string $Avatar): self
+    {
+        $this->Avatar = $Avatar;
+
+        return $this;
+    }
+
+    public function getEmail(): ?string
+    {
+        return $this->email;
+    }
+
+    public function setEmail(string $email): self
+    {
+        $this->email = $email;
+
+        return $this;
     }
 }
