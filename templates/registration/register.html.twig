@@ -3,6 +3,7 @@
 {% block head %}
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color">
         <meta name="description" content="page d'inscription' du site la gazette">
         <title>{% block title %}inscription{% endblock %}</title>
 
@@ -11,7 +12,7 @@
         {% block stylesheets %}
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
 
-        <link href="//db.onlinewebfonts.com/c/7a8bc7c29b5bcadb9510cca51210ac46?family=Sitka+Banner&display=swap" rel="preload" as="font" type="text/css"/>
+        <link href="//db.onlinewebfonts.com/c/7a8bc7c29b5bcadb9510cca51210ac46?family=Sitka+Banner&display=swap" rel="preload" as="font" crossorigin type="text/css"/>
         <link rel="stylesheet" href="{{asset("css/style.css")}}">
         {% endblock %}
 
@@ -36,22 +37,25 @@
         <div class="alert alert-danger" role="alert">{{ flashError }}</div>
     {% endfor %}
 
-    <h1 class="text-center">La Gazette</h1>
-
+    <h1 class="text-center mt-5"><a href="/">La Gazette</a></h1>
+    <p class="subtitle text-uppercase mt-5">Inscription</p>
     {{ form_start(registrationForm) }}
         {{ form_row(registrationForm.username,{'attr':{'placeholder':'votre nom d\'utilisateur'}}) }}
-        <p class="error alert-danger mt-3"></p>
-        {{form_row(registrationForm.email,{'attr':{'placeholder':'votre email'}})}}
-           <p class="error-email alert-danger mt-3"></p>
-        {{ form_row(registrationForm.plainPassword, {'attr':{'placeholder':'votre mot de passe'}}) }}
-     <p class="error-password alert-danger mt-3"></p>
+        <p class="error alert-danger mt-2 d-none "></p>
+        {{form_row(registrationForm.email,{'attr':{'placeholder':'votre email','class':'mt-3'}})}}
+           <p class="error-email alert-danger mt-2 d-none"></p>
+        {{ form_row(registrationForm.plainPassword, {'attr':{'placeholder':'votre mot de passe','class':'mt-3'}}) }}
+     <p class="error-password alert-danger mt-2 d-none "></p>
+     {{form_row(registrationForm.Descriptions,{'attr':{'placeholder':'ajouter une description de vous en quelque ligne','maxlength':'255','class':'message'}})}}
+    
     <div class="d-flex mt-5 ">
    
-        {{ form_row(registrationForm.cgu,{'attr':{'class':''}}) }}
-             <label for="" class="pointer" data-bs-toggle="modal" data-bs-target="#exampleModal">conditions générales d'utilisations</label>
+        {{ form_row(registrationForm.cgu) }}
+             <label for="" class="pointer sitka-banner  " data-bs-toggle="modal" data-bs-target="#exampleModal">conditions générales d'utilisations</label>
     </div>
-        <button type="submit" class="btn btn-primary w-100 mt-3 ">Inscription</button>
+        <button type="submit" class="btn btn-primary w-100 mt-5 ">Inscription</button>
     {{ form_end(registrationForm) }}    
+  
     </div>
     </div>
     </div>
@@ -292,6 +296,8 @@
 </div>
     {% block javascript %}
       <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous"></script>
-    <script src="{{asset('js/form.js')}}" ></script>
+   
+
+    <script type="module" src="{{asset('js/form.js')}}" ></script>
     {% endblock %}
 {% endblock %}

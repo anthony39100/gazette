@@ -55,8 +55,18 @@ class User implements UserInterface
 
     /**
      * @ORM\Column(type="string", length=255)
+     *   
+     * @Assert\Email(
+     *     message = "email non valide"
+     * )
      */
+     
     private $email;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $Descriptions;
 
     public function getId(): ?int
     {
@@ -166,6 +176,18 @@ class User implements UserInterface
     public function setEmail(string $email): self
     {
         $this->email = $email;
+
+        return $this;
+    }
+
+    public function getDescriptions(): ?string
+    {
+        return $this->Descriptions;
+    }
+
+    public function setDescriptions(?string $Descriptions): self
+    {
+        $this->Descriptions = $Descriptions;
 
         return $this;
     }

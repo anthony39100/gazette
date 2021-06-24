@@ -1,3 +1,12 @@
+import { MasquerErreur,AfficherErreur } from "./function.js";
+
+
+let textarea=document.querySelector('#registration_form_Descriptions');
+textarea.addEventListener('keyup',function(){
+    console.log(textarea.value.length)
+})
+
+
 var username=document.querySelector('#registration_form_username');
 //je selectionne l'element username du formulaire 
 username.addEventListener('change',function(){
@@ -23,25 +32,24 @@ username.addEventListener('change',function(){
       return response.json();
     })
     .then(function(response) {
-        var textError=document.querySelector('.error');
+       
         if(response.statut==1){
            
-            textError.innerText="nom d'utilisateur déjà utilisé"
+            AfficherErreur('.error','nom d\'utilisateur déjà utilisé');
 
         }else{
-            textError.innerText=" "
+            MasquerErreur('.error');
         }
     });
 })
 
 username.addEventListener('change',function(){
     let regex=/^[a-z]+$/i;
-    var textError=document.querySelector('.error');
     let trouve=username.value.match(regex)
     if(trouve){
-        textError.innerText=" ";
+        MasquerErreur('.error');
     }else{
-        textError.innerText="les caractères spéciaux ( ! * ? $ ...) sont interdits.";
+        AfficherErreur('.error','les caractères spéciaux ( ! * ? $ ...) sont interdits.');
     }
 })
 //verfication du nom d'utilisateur
@@ -75,18 +83,17 @@ email.addEventListener('change',function(){
       return response.json();
     })
     .then(function(response) {
-        var textError=document.querySelector('.error-email');
+  
         if(response.statut==1){
            
-            textError.innerText="email déjà utilisé"
+           AfficherErreur('.error-email','email déjà utilisé');
 
         }else{
-            textError.innerText=" "
+            MasquerErreur('.error-email');
         }
     });
 })
 //verification de l'email
-
 
 //conditions général d'utilisation
 
@@ -102,9 +109,8 @@ let password=document.querySelector('#registration_form_plainPassword');
 password.addEventListener('change',function(){
     var textError=document.querySelector('.error-password');
     if(password.value.length<6){
-        textError.innerText="votre mot de passe doit comporter minimun 6 caractères"
-   
+        AfficherErreur('.error-password','votre mot de passe doit comporter minimun 6 caractères');
     }else{
-        textError.innerText=" "
+        MasquerErreur('.error-password');
     }
 })

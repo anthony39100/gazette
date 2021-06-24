@@ -2,7 +2,9 @@
 
 namespace App\Controller;
 
+
 use App\Entity\User;
+
 use App\Form\RegistrationFormType;
 use App\Repository\UserRepository;
 use Symfony\Component\HttpFoundation\Request;
@@ -10,6 +12,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\Security\Core\Authentication\Token\TokenInterface;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 
 class RegistrationController extends AbstractController
@@ -70,9 +73,9 @@ class RegistrationController extends AbstractController
        }
     }
         /**
-     *@Route("/email-ajax","email-ajax")
+     *@Route("/email-ajax",name="email-ajax")
      */
-    public function ajaxEmail(UserRepository $userRepo,Request $request){
+    public function ajaxEmail(UserRepository $userRepo,TokenInterface $token,Request $request){
         $user=new User();
         $form=$request->get("registration_form");
         
@@ -85,4 +88,5 @@ class RegistrationController extends AbstractController
         return new JsonResponse(['statut'=>1]);
        }
     }
+
 }

@@ -13,6 +13,7 @@ use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
+use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
 class RegistrationFormType extends AbstractType
@@ -47,6 +48,9 @@ class RegistrationFormType extends AbstractType
                         'max' => 4096,
                     ]),
                 ],
+            ])
+            ->add('Descriptions',TextareaType::class,[
+                'label'=>' '
             ])
         ;
     }
