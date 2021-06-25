@@ -8,6 +8,7 @@ use App\Form\RegisterType;
 
 
 use App\Repository\ArticleRepository;
+use App\Repository\CategorieRepository;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -18,14 +19,23 @@ class AccueilController extends AbstractController
     /**
      * @Route("/", name="accueil")
      */
-    public function index(ArticleRepository $article): Response
+    public function index(ArticleRepository $article,CategorieRepository $categorie): Response
     {
-        $articleNouveauté=$article->findAll();
+        $articleNouveauté=$article->findOneBy(['categorie'=>1],['date'=>'DESC']);
+         //J'aimerais recupere mes articles par son nom de categorie mais le nom de la categorie se trouve dans une entity differente 
+         $articles=$article->findByCategorieTitle(1);
+     
         return $this->render('accueil/index.html.twig', [
             'controller_name' => 'AccueilController',
-            'articles'=>$articleNouveauté
+            'article'=>$articleNouveauté,
+            'articles'=> $articles
         ]);
     }
-    
+    /**
+     * @Route("/article/{categorie}/{id}",name="article")
+     */
+    public function Article(){
+        return $this->render('article.html.twig');
+    }
     }
 
