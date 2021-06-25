@@ -9,9 +9,16 @@
 .title-size{
     font-size: 40px;
     font-family:"Sitka Banner" ;
+    color: black !important;
 }
 .link-accueil{
     font-size: 45px;
+    color: black !important;
+}
+li>a{
+    font-size: 25px;
+    font-family:"Sitka Banner" ;
+    color: black !important;
 }
 h1>a{
     text-decoration: none;
@@ -23,6 +30,12 @@ h1>a{
     height:100vh;
    background-blend-mode: normal;
     
+}
+.dropdown>button{
+    background-color: transparent !important;
+    color: black !important;
+    border: none !important;
+    font-size: 25px;
 }
 input[type=text]{
     border-left:none !important;
@@ -82,6 +95,11 @@ input[type=email]{
 .subtitle{
     font-size: 30px;
 }
+.date-style{
+    font-size: 30px;
+    color: black;
+    opacity: 0.30;
+}
 @media (max-width: 575.98px) { 
     .bg-register{
         background-image:url('../images/bg-register360w.jpg');
@@ -92,14 +110,11 @@ input[type=email]{
 
  }
 
- // Small devices (landscape phones, 576px and up)
+
  @media (min-width: 576px) and (max-width: 767.98px) { ... }
  
- // Medium devices (tablets, 768px and up)
  @media (min-width: 768px) and (max-width: 991.98px) { ... }
  
- // Large devices (desktops, 992px and up)
  @media (min-width: 992px) and (max-width: 1199.98px) { ... }
  
- // Extra large devices (large desktops, 1200px and up)
  @media (min-width: 1200px) { ... }
