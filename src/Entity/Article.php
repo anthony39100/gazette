@@ -44,10 +44,12 @@ class Article
     private $imageArticle;
 
     /**
-     * @ORM\ManyToOne(targetEntity=Categorie::class, inversedBy="categorie")
+     * @ORM\ManyToOne(targetEntity=Categorie::class, inversedBy="article")
      * @ORM\JoinColumn(nullable=false)
      */
     private $categorie;
+
+    
 
   
 
@@ -128,4 +130,8 @@ class Article
         return $this;
     }
 
+    public function __toString(){
+        return $this->Titre;
+    }
+    
 }

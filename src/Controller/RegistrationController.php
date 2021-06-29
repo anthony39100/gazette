@@ -75,7 +75,7 @@ class RegistrationController extends AbstractController
         /**
      *@Route("/email-ajax",name="email-ajax")
      */
-    public function ajaxEmail(UserRepository $userRepo,TokenInterface $token,Request $request){
+    public function ajaxEmail(UserRepository $userRepo,Request $request){
         $user=new User();
         $form=$request->get("registration_form");
         

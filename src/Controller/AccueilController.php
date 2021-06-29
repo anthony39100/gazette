@@ -21,14 +21,14 @@ class AccueilController extends AbstractController
      */
     public function index(ArticleRepository $article,CategorieRepository $categorie): Response
     {
-        $articleNouveauté=$article->findOneBy(['categorie'=>1],['date'=>'DESC']);
+        $articleNouveauté=$article->findOneBy(['categorie'=>2],['date'=>'DESC']);
          //J'aimerais recupere mes articles par son nom de categorie mais le nom de la categorie se trouve dans une entity differente 
-         $articles=$article->findByCategorieTitle(1);
+         $categorie=$categorie->findBy(['nomCategorie'=>"films"]);
      
         return $this->render('accueil/index.html.twig', [
             'controller_name' => 'AccueilController',
             'article'=>$articleNouveauté,
-            'articles'=> $articles
+            'categories'=> $categorie
         ]);
     }
     /**

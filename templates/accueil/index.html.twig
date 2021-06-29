@@ -1,54 +1,49 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello AccueilController!{% endblock %}
+{% block title %}Hello AccueilController!
+{% endblock %}
 
 {% block body %}
-<style>
-    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
-    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
-</style>
-<div class="container-fluid">
+	<style>
+		.example-wrapper {
+			margin: 1em auto;
+			max-width: 800px;
+			width: 95%;
+			font: 18px / 1.5 sans-serif;
+		}
+		.example-wrapper code {
+			background: #F5F5F5;
+			padding: 2px 6px;
+		}
+	</style>
+	<div class="container-fluid">
+		<div class="row">
+
+			<pre>
+
+</pre>
+
+			<div class="col-7 ">
+				<p class="ml-5"><img class="img-fluid" src="{{article.imageArticle}}" alt=""></p>
+			</div>
+			<div class="col-4">
+				<p class="date-style">Nouveauté -
+					{{article.date|date("m/d/Y", "Europe/Paris") }}</p>
+				<p class="title-size">{{article.titre}}</p>
+				<p class="mr-5">{{article.contenu | raw }}</p>
+				<p>
+					<a href="{{path('article',{'categorie':article.categorie.nomCategorie,'id':article.id})}}">Lire la suite</a>
+				</p>
+			</div>
+
+		</div>
+	</div>
+
+	<article class="container-fluid">
     <div class="row">
-  
-
-    
-        <div class="col-7 ">
-        <p class="ml-5"><img class="img-fluid" src="{{article.imageArticle}}" alt=""></p>
-        </div>
-        <div class="col-5">
-        <p class="date-style">Nouveauté - {{article.date|date("m/d/Y", "Europe/Paris") }}</p>
-        <p class="title-size">{{article.titre}}</p>
-         <p class="mr-5">{{article.contenu}}</p>
-         <p><a href="{{path('article',{'categorie':article.categorie.nomCategorie,'id':article.id})}}">Lire la suite</a></p>
-        </div>
-     
+    {% include "/partials/_articles.html.twig" %}
     </div>
-</div>
-
-<article class="container-fluid">
-
-      {% for categorie in article.categorie %}
-
-    <div class="row ">
-       
-        <div class="col-12">
-            
-        <h2 class="mt-5 ">{{article.categorie.nomCategorie}}</h2>
-
-        </div>
-       
-      
-          {{categorie.id}}  
-       
-        <div class="col-4  ">
-        <p><img class="img-fluid" src="{{categorie.imageArticle}}" alt=""></p>
-        </div>
-         {% endfor %}
-      
-    </div>
-      {% endfor %}
-</article>
-
+  </article>
 
 
 {% endblock %}

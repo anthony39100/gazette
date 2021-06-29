@@ -27,12 +27,16 @@ class Categorie
     /**
      * @ORM\OneToMany(targetEntity=Article::class, mappedBy="categorie", orphanRemoval=true)
      */
-    private $categorie;
+    private $article;
 
     public function __construct()
     {
-        $this->categorie = new ArrayCollection();
+        $this->article = new ArrayCollection();
     }
+
+
+
+  
 
 
     public function getId(): ?int
@@ -55,31 +59,35 @@ class Categorie
     /**
      * @return Collection|Article[]
      */
-    public function getCategorie(): Collection
+    public function getArticle(): Collection
     {
-        return $this->categorie;
+        return $this->article;
     }
 
-    public function addCategorie(Article $categorie): self
+    public function addArticle(Article $article): self
     {
-        if (!$this->categorie->contains($categorie)) {
-            $this->categorie[] = $categorie;
-            $categorie->setCategorie($this);
+        if (!$this->article->contains($article)) {
+            $this->article[] = $article;
+            $article->setCategorie($this);
         }
 
         return $this;
     }
 
-    public function removeCategorie(Article $categorie): self
+    public function removeArticle(Article $article): self
     {
-        if ($this->categorie->removeElement($categorie)) {
+        if ($this->article->removeElement($article)) {
             // set the owning side to null (unless already changed)
-            if ($categorie->getCategorie() === $this) {
-                $categorie->setCategorie(null);
+            if ($article->getCategorie() === $this) {
+                $article->setCategorie(null);
             }
         }
 
         return $this;
     }
+    public function __toString(){
+        return $this->nomCategorie;
+    }
+  
 
 }

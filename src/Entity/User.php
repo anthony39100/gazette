@@ -73,7 +73,7 @@ class User implements UserInterface
     /**
      * @ORM\OneToMany(targetEntity=Article::class, mappedBy="auteur")
      */
-    private $auter;
+    private $auteur;
 
     public function __construct()
     {
@@ -232,5 +232,8 @@ class User implements UserInterface
         }
 
         return $this;
+    }
+    public function __toString(){
+        return $this->username;
     }
 }

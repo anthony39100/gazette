@@ -23,17 +23,19 @@ class ArticleRepository extends ServiceEntityRepository
     //  * @return Article[] Returns an array of Article objects
     //  */
 
-    public function findByCategorieTitle($categorie)
-    {
-        return $this->createQueryBuilder('a')
-            ->andWhere('a.categorie > :val')
-            ->setParameter('val', $categorie)
-            ->orderBy('a.date', 'Desc')
-            ->setMaxResults(10)
-            ->getQuery()
-            ->getResult()
-        ;
-    }
+    // public function findByCategorieTitle()
+    // {
+    //     return $this->createQueryBuilder('a')
+           
+    //         ->leftJoin('a.categorie','j' )
+    //         ->where('a.categorie=j.id')
+    //         ->orderBy('a.categorie', 'Desc')
+    //         ->orderBy('j.nomCategorie')
+    //         ->setMaxResults(10)
+    //         ->getQuery()
+    //         ->getResult()
+    //     ;
+    // }
   
 
     /*

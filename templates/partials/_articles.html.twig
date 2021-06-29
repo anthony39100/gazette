@@ -1,0 +1,13 @@
+{% for categorie in categories %}
+    <div class="col-11 ml-5 mt-5">
+	<h2>{{categorie.nomCategorie}}</h2>
+    </div>
+    
+	{% for article in categorie.article %}
+    <div class="col-3 ml-5">
+        <p><img src="{{article.imageArticle}}" alt="" srcset=""></p>
+          <h2>{{article.titre}}</h2>
+             <p>{{article.contenu |  u.truncate(80, '...') | raw}}</p>
+    </div>
+    {% endfor %}
+{% endfor %}
